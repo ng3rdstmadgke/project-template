@@ -1,4 +1,7 @@
 {
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
   "permissions": {
     "allow": [
       "Edit",
@@ -41,11 +44,11 @@
     "context7",
     "serena"
   ],
-  "env": {
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
-  },
   "statusLine": {
     "type": "command",
     "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/statusline-command.sh\""
+  },
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true
   }
 }

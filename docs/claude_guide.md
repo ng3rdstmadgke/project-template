@@ -18,6 +18,12 @@ gh auth login
 
 ---
 
+# ■ プラグイン
+
+## Superpowers
+
+[superpowers | GitHub](https://github.com/obra/superpowers)
+
 
 # ■ MCPサーバー
 ## GitHub MCP
@@ -63,7 +69,7 @@ claude mcp add \
   --header "CONTEXT7_API_KEY: $CONTEXT7_API_KEY"
 ```
 
-## Serena (シンボルベース編集)
+## Serena (シンボルベース検索・編集)
 
 - [oraios/serena | GitHub](https://github.com/oraios/serena)
 
@@ -75,19 +81,6 @@ claude mcp add \
   --scope project \
   --transport stdio \
   serena -- uvx --from git+https://github.com/oraios/serena serena start-mcp-server --context claude-code --project "."
-```
-
-## Kiri (コードベース検索)
-
-- [CAPHTECK/kiri | GitHub](https://github.com/CAPHTECH/kiri)
-
-Gitリポジトリからインテリジェントなコードコンテキストを抽出するMCPサーバーです。コードベースをDuckDBにインデックス化し、LLM向けの意味的検索ツールを提供します。
-
-```bash
-claude mcp add \
-  --scope project \
-  --transport stdio \
-  kiri -- npx -y kiri-mcp-server@latest --repo . --db .kiri/index.duckdb --watch
 ```
 
 ## next-devtools-mcp (Next.jsの開発支援)
@@ -147,18 +140,6 @@ claude mcp add \
       --isolated \
       --no-sandbox
 ```
-
-## DuckDuckGo
-
-https://hub.docker.com/r/mcp/duckduckgo
-
-```bash
-claude mcp add \
-  --transport stdio \
-  --scope project \
-  duckduckgo -- docker run -i --rm mcp/duckduckgo 
-```
-
 
 ## AWS Documentation
 

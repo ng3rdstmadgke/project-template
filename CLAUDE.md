@@ -3,12 +3,22 @@
 ユーザーには日本語で応答してください。
 
 ## AIの行動指針
-### 1. Plan Mode をデフォルトとすること
+### 1. ワークフロー
 
-- 些細ではないタスク（3ステップ以上、または設計上の決定を伴うもの）では、必ずplan modeに入ること。
+- 些細ではないタスク（3ステップ以上、または設計上の決定を伴うもの）では、必ず superpowers プラグインを利用し、以下の「The Basic Workflow」 にしたがってタスクを進めること
 - 何か問題が発生した場合は、無理に押し進めず、ただちに停止して計画を立て直すこと。
-- 構築だけでなく、検証ステップのためにもplan modeを利用すること。
-- 曖昧さを排除するため、事前に詳細な仕様を記述すること。
+
+#### The Basic Workflow
+
+1. **/brainstorming** - Activates before writing code. Refines rough ideas through questions, explores alternatives, presents design in sections for validation. Saves design document.
+2. **/using-git-worktrees** - Activates after design approval. Creates isolated workspace on new branch, runs project setup, verifies clean test baseline.
+3. **/writing-plans** - Activates with approved design. Breaks work into bite-sized tasks (2-5 minutes each). Every task has exact file paths, complete code, verification steps.
+4. **/subagent-driven-development** or **/executing-plans** - Activates with plan. Dispatches fresh subagent per task with two-stage review (spec compliance, then code quality), or executes in batches with human checkpoints.
+5. **/test-driven-development** - Activates during implementation. Enforces RED-GREEN-REFACTOR: write failing test, watch it fail, write minimal code, watch it pass, commit. Deletes code written before tests.
+6. **/requesting-code-review** - Activates between tasks. Reviews against plan, reports issues by severity. Critical issues block progress.
+7. **/finishing-a-development-branch** - Activates when tasks complete. Verifies tests, presents options (merge/PR/keep/discard), cleans up worktree.
+
+**The agent checks for relevant skills before any task.** Mandatory workflows, not suggestions.
 
 
 ### 2. サブエージェント戦略
@@ -20,7 +30,7 @@
 
 ### 3. 情報の正確性
 
-- 外部サービスやライブラリのAPI仕様や使い方はContext7やweb検索で公式の最新情報を参照すること
+- 外部サービス、ライブラリが絡む設計・実装では必ずContext7もしくは、web検索で公式の最新情報を参照すること
 
 ### 4. 自己改善ループ
 
@@ -37,86 +47,25 @@
 ### 6. 美しいアーキテクチャの追求
 
 - 美しいアーキテクチャとは長期間にわたって開発・運用・改善が容易であり、拡張に対して開かれており、修正に対して閉じられているものである。
-- Clean Architecture, DDD, SOLIDの原則, GoFデザインパターンといった普遍的な設計原則を参考にすること。
-- 修正が場当たり的だと感じたら、一度立ち止まって「より美しいアーキテクチャはないか？」を考えること。
+- 技術負債となるようなアドホックな解決策を提示しない。アドホックだと感じたら、一度立ち止まって「より美しいアーキテクチャはないか」を考えること。
 - 単純で明白な修正についてはオーバーエンジニアリングを避けること。
 - 提示する前に、自分の成果を疑ってみること。
+
+**設計の基本原則**
+- **普遍的な設計原則への準拠**: Clean Architecture, DDD, TDD, SOLIDの原則, GoFデザインパターンといった普遍的な設計原則に準拠すること
+- **深い洞察**: 表面的な問題の解決を目指すのではなく、問題の根本原因を見つけ、設計レベルでの改善が可能かを常に考えること
+- **シンプル第一**: あらゆる変更を可能な限りシンプルにする。コードへの影響を最小限に抑える。
+- **最小限の影響**: 必要な箇所だけに手を加える。バグの混入を避ける。
+- **怠慢の禁止**: 現在の実装に引きずられたり、一時しのぎの修正を行わない。シニアディベロッパーの基準で長期的に運用・拡張が容易なアーキテクチャを目指すこと
 
 ### 7. 自律的なバグ修正
 
 - バグ報告を受けたら、ログ、エラー、失敗したテストを特定し、原因究明と修正方針の策定までを自律的行うこと
 
-## タスクの進め方
 
-### 1. 設計優先
+### 8. ドキュメント執筆規約
 
-**タスクの全体の設計を `agent-tasks/タスク名/spec.md` にマークダウンで作成**
-
-- 与えられたタスクに必要な情報をリポジトリ内から収集すること
-- 外部サービスやライブラリの仕様はContext7もしくはweb検索で最新の情報を取得すること
-- 得られた情報を元にユーザーと brainstorming を行い、共同で設計判断を行うこと
-- 設計にはテスト戦略を含めること。TDDの要領で正しい動作動作を事前に定義しておくこと
-- `docs/documentation_policy.md` の「書き方」の方針に従い、人間とAIどちらも理解しやすいように記述すること
-- spec.mdが完成したら、一度すべての内容を確認し、brainstormingでユーザーと決めた仕様・設計に準拠しているかを確認する。ユーザーと会話されていない設計判断が必要な記述があればユーザーに確認する。
-
-
-**設計の基本原則**
-- **シンプル第一**: あらゆる変更を可能な限りシンプルにする。コードへの影響を最小限に抑える。
-- **最小限の影響**: 必要な箇所だけに手を加える。バグの混入を避ける。
-- **怠慢の禁止**: 現在の実装に引きずられたり、一時しのぎの修正を行わない。シニアディベロッパーの基準で長期的に運用・拡張が容易なアーキテクチャを目指すこと
-- **深い洞察**: 表面的な問題の解決を目指すのではなく、問題の根本原因を見つけ、設計レベルでの改善が可能かを常に考えること
-- **普遍的な設計原則への準拠**: Clean Architecture, DDD, TDD, SOLIDの原則, GoFデザインパターンといった普遍的な設計原則に準拠すること
-
-### 2. プラン作成
-
-**設計から実装計画を `agent-tasks/タスク名/task.md` にマークダウンで作成**
-
-- 各ステップのタスクはチェック可能な項目として、完了・未完了がわかるようにする
-- 各ステップで正しく実装できているかをチェックするための確認手順を含む
-- デプロイ、ブランチのpushなど、既存の環境への変更の適用をタスクに含めない
-- 原則としてgit commitなど、コードベースの変更を確定する操作はタスクに含めない。ステップごとに人間が変更を確認してcommitするフローとする
-
-
-### 3. プランレビュー
-
-**実装を開始する前に`agent-tasks/タスク名/spec.md` , `agent-tasks/タスク名/task.md`のレビューを `agent-tasks/タスク名/review.md` にマークダウンで作成**
-
-- レビュー観点
-  - ドリフト検知: 当初、ユーザーとAIで brainstorming して決めた仕様・設計と食い違っていないか
-  - 情報の正確性: context7、web検索で公式の最新情報を確認して、内容の正確性をチェックする
-  - 全体的な整合性: 新しい変更が、既存のアーキテクチャ、データモデル、API、命名規則、コンポーネントの役割分担と矛盾なく調和しているか
-  - 根本解決と技術負債の回避: その場しのぎの修正になっていないか。複雑性を上げたり、将来的な技術負債を生んだりしていないか
-  - 再利用性と共通化: 車輪の再発明を避け、既存の共通コンポーネントやユーティリティを適切に活用しているか
-  - 破壊的変更の検知: リソースの強制置換など、既存の稼働中インフラを停止・破壊してしまう実装が含まれていないか
-  - セキュリティと最小権限: IAMポリシーやセキュリティグループに不要な権限がついていないか
-  - 将来への影響: 将来的な機能拡張やスケールアウトを不必要に妨げる設計になっていないか
-- 修正項目をユーザーに報告
-  - review.mdはユーザーがタスクのフローを確認しやすいように、冒頭に目次をつける
-  - 修正の要否をstep by stepでユーザーに質問する。ユーザーが判断しやすいように質問には目的、経緯、トレードオフなどの背景情報も含める
-
-### 4. 実装
-
-**`agent-tasks/タスク名/task.md` のタスクを実行**
-
-- 一気に実装するか、ステップごとに人間によるレビューを挟むかを人間に選択させること
-- メインのコンテキストを節約するため、sub agent、agent teamを積極的に利用すること
-- 進捗に応じて完了項目をマークすること
-- 追加の設計判断が必要なった場合はそのまま進めずユーザーに質問すること
-- 設計・計画の変更が必要になった場合はユーザーの確認をとって `agent-tasks/タスク名/spec.md` 、 `agent-tasks/タスク名/task.md` を修正すること
-
-### 5. 実装レビュー
-
-**実装が完了したら`agent-tasks/タスク名/spec.md` , `agent-tasks/タスク名/task.md` の内容と実装が食い違っていないかを sub agent が確認する**
-
-### 6. 教訓の抽出 (Capture Lessons)
-
-**ユーザーから受けた指摘を抽象化し、教訓として auto memory に残す**
-
-- auto memory を一度俯瞰し、必要であれば教訓の統合や廃止を行う
-
-### 7. 補足
-
-- その他タスクに必要なファイルは `agent-tasks/タスク名/` 配下に配置します。
+- ドキュメンを執筆するときは `/japanese-tech-writing` スキルを必ず利用すること。
 
 
 # 開発環境について
@@ -132,7 +81,3 @@
 - ソースコード、チケット(issue)、マージリクエストなどへのアクセスは `gh` コマンドを利用してください。
 - ブランチ名には `feature/チケット番号_xxxxxxxxx` のようなルールでチケット番号が含まれています。チケット情報を取得する際にはこのIDを使ってください
 - コミットメッセージは原則 `ref #チケットID メッセージ` という形式になっており、コミットメッセージからファイルの変更に対応するチケットを特定することができます。
-
-# ドキュメンテーション作成
-
-ドキュメントの作成・修正・改善は `docs/documentation_policy.md` に書いてあるポリシーに必ず従うこと
