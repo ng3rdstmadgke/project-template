@@ -7,11 +7,11 @@
    * プロパティ: https://containers.dev/implementors/json_reference/#general-properties
    */
   // UIに表示するdevcontainerの名前
-  "name": "devcontainer-template",
+  "name": "project-template",
 
    // コンテナの環境変数設定
   "containerEnv": {
-      "PROJECT_NAME": "devcontainer-template",
+      "PROJECT_NAME": "project-template",
       // devcontainerのID
       "DEVCONTAINER_ID": "${devcontainerId}",
       // ホスト側のプロジェクトディレクトリ
@@ -21,7 +21,7 @@
       // ホスト側のユーザー名
       "HOST_USER": "${localEnv:USER}",
       // devcontainerが所属するネットワーク名
-      "DOCKER_NETWORK": "br-devcontainer-template-${localEnv:USER}"
+      "DOCKER_NETWORK": "br-project-template-${localEnv:USER}"
   },
 
   "forwardPorts": [
@@ -31,10 +31,10 @@
   "mounts": [
       "source=${localEnv:HOME}/.ssh/,target=/home/vscode/.ssh/,type=bind,consistency=cached",
       "source=${localEnv:HOME}/.aws/,target=/home/vscode/.aws/,type=bind,consistency=cached",
-      "source=${localEnv:HOME}/.devcontainer-template/.kube/,target=/home/vscode/.kube/,type=bind,consistency=cached",
-      "source=${localEnv:HOME}/.devcontainer-template/.config/helm/,target=/home/vscode/.config/helm/,type=bind,consistency=cached",
-      "source=${localEnv:HOME}/.devcontainer-template/.claude/,target=/home/vscode/.claude/,type=bind,consistency=cached",
-      "source=${localEnv:HOME}/.devcontainer-template/.claude.json,target=/home/vscode/.claude.json,type=bind,consistency=cached"
+      "source=${localEnv:HOME}/.project-template/.kube/,target=/home/vscode/.kube/,type=bind,consistency=cached",
+      "source=${localEnv:HOME}/.project-template/.config/helm/,target=/home/vscode/.config/helm/,type=bind,consistency=cached",
+      "source=${localEnv:HOME}/.project-template/.claude/,target=/home/vscode/.claude/,type=bind,consistency=cached",
+      "source=${localEnv:HOME}/.project-template/.claude.json,target=/home/vscode/.claude.json,type=bind,consistency=cached"
   ],
 
   // devcontainerに追加する機能の定義
@@ -59,7 +59,7 @@
 
   // devcontainer 起動時の docker run のオプション
   "runArgs": [
-    "--network=br-devcontainer-template-${localEnv:USER}"
+    "--network=br-project-template-${localEnv:USER}"
   ],
 
 

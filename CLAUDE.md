@@ -52,7 +52,7 @@
 
 ## チケットとソース管理について
 
-- ソースコード・チケット(issue)は https://github.com/ng3rdstmadgke/devcontainer-template リポジトリで管理されます。
+- ソースコード・チケット(issue)は https://github.com/ng3rdstmadgke/project-template リポジトリで管理されます。
 - ソースコード、チケット(issue)、マージリクエストなどへのアクセスは `gh` コマンドを利用してください。
 - ブランチ名には `feature/チケット番号_xxxxxxxxx` のようなルールでチケット番号が含まれています。チケット情報を取得する際にはこのIDを使ってください
 - コミットメッセージは原則 `ref #チケットID メッセージ` という形式になっており、コミットメッセージからファイルの変更に対応するチケットを特定することができます。
