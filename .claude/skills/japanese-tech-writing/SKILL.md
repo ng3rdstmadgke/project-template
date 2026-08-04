@@ -145,13 +145,13 @@ LLM が大量生成する、中身のない型に誘惑されない。書き上�
 - 確認していないことを、確認したかのように滑らかに書かない。
 
 
-## Mermaidの使い分け
+## 視覚化
 
-文章だけで説明し続けず、 Mermaid diagram、表、箇条書きを積極的につかい、構造・関係・流れを視覚化する。
-
-| 用途 | Mermaid |
-| :--- | :--- |
-| コンポーネント間の関係 | flowchart |
-| API、deploy、認証などの時系列 | sequenceDiagram |
-| 状態遷移 | stateDiagram-v2 |
-| データモデルの概念説明 | erDiagram |
+- Mermaid、表、箇条書き、コードブロックを積極的に利用し、構造・関係・流れを視覚化する
+- Mermaidの利用用途
+  - `flowchart` : コンポーネント間の関係
+  - `sequenceDiagram` : API、deploy、認証などの時系列
+  - `stateDiagram-v2` : 状態遷移
+  - `erDiagram` : テーブルのリレーション、データモデルの概念説明
+  - `classDiagram` : クラス・オブジェクトの依存関係
+  - `architecture-beta` : アーキテクチャ図
