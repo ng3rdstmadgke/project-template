@@ -10,10 +10,18 @@ description: |
 
 # 原則
 
-このワークフローでは以下を一切禁止とする
+## 禁止事項
+
+このワークフローでは以下の行為を一切禁止とする
 
 - 本番環境の**変更・デプロイ**
 - ユーザーの質問・指摘に対して、方針の合意を取らずにファイルを編集すること
+
+## 注意事項
+
+- ユーザーの注意力・ワーキングメモリは有限である。できる限り簡潔に応答すること。認知負荷を下げること。
+- 質問に対しては簡潔な結論をまず述べること。補足があれば結論の後に述べること。
+- 質問に回答する際は context7 や web検索 で最新情報の裏取りを行うこと。
 
 # AIワークフロー
 
@@ -31,10 +39,10 @@ description: |
 
 ## このワークフローで作成される主なファイル
 
-- 設計 (`spec`) : `agent-tasks/ブランチ名/specs/YYYY-MM-DD-<TOPIC>.md`
-- 実装計画 (`plan`) : `agent-tasks/ブランチ名/plans/YYYY-MM-DD-<TOPIC>.md`
-- 設計・実装計画レビュー (`review`) : `agent-tasks/ブランチ名/review/YYYY-MM-DD-<TOPIC>.md`
-- 修正経緯 (`fixes`) : `agent-tasks/ブランチ名/fixes/YYYY-MM-DD-<TOPIC>.md`
+- 設計 (`spec`) : `agent-tasks/<ブランチ名>/specs/<TOPIC>.md`
+- 実装計画 (`plan`) : `agent-tasks/<ブランチ名>/plans/<TOPIC>.md`
+- 設計・実装計画レビュー (`spec-review`) : `agent-tasks/<ブランチ名>/spec-review/<TOPIC>.md`
+- 修正経緯 (`fixes`) : `agent-tasks/<ブランチ名>/fixes/<TOPIC>.md`
 - 設計判断 (`adr`) : `docs/adr/<TICKET_ID>_<TITLE>.md`
 
 ## Red Flags — 手が滑っているサイン
@@ -47,9 +55,10 @@ description: |
 
 ## 1. 設計
 
-`/superpowers:brainstorming` スキルを利用して、ユーザーと共同で設計を行う。
+ユーザーと共同で設計を行う。
 
-- 設計(`spec`)を保存する場所: `agent-tasks/ブランチ名/specs/YYYY-MM-DD-<TOPIC>.md`
+- 設計(`spec`)を保存する場所: `agent-tasks/<ブランチ名>/specs/<TOPIC>.md`
+- 利用するスキル: `/superpowers:brainstorming`
 
 ### 情報収集
 
@@ -90,16 +99,24 @@ description: |
 
 ## 2. 実装計画
 
-`/superpowers:writing-plans` スキルを利用して設計を実装計画に落とし込む。
+設計をタスク単位の実装計画に落とし込む。
 
-- 実装計画(`plan`)を保存する場所: `agent-tasks/ブランチ名/plans/YYYY-MM-DD-<TOPIC>.md`
+- 実装計画(`plan`)を保存する場所: `agent-tasks/<ブランチ名>/plans/<TOPIC>.md`
+- 利用するスキル: `/superpowers:writing-plans`
+
+### タスクの方針
 
 - デプロイ、ブランチのpushなど、既存環境への変更の適用はタスクに含めない
+- その他の方針は `/superpowers:writing-plans` に従うこと
 
 ## 3. 設計・実装計画のレビュー
 
-1. 「1. 設計」「2.実装計画」で作成した `spec` と `plan` を以下の観点でレビューする。 客観性を保つため、レビューは別の sub agent に委ねること。
-  - レビュー(`review`)を保存する場所: `agent-tasks/ブランチ名/review/YYYY-MM-DD-<TOPIC>.md`
+「1. 設計」「2.実装計画」で作成した `spec` と `plan` をレビューして、ユーザーと方針の合意を取りながら `spec` と `plan` を修正する。
+
+- レビュー(`spec-review`)を保存する場所: `agent-tasks/<ブランチ名>/spec-review/<TOPIC>.md`
+- 利用するスキル: なし
+
+1. 客観性を保つため、レビューは別の sub agent に委ねること。
 2. 修正の要否をステップバイステップでユーザーに質問する。ユーザーが判断しやすいよう、質問には目的、経緯、トレードオフなどの背景情報を含める
 3. 重大な指摘があれば「1. 設計」「2.実装計画」に差し戻し、ユーザーと再度設計をし直すこと。
 
@@ -116,10 +133,14 @@ description: |
 
 ## 4. 実装
 
-`/superpowers:subagent-driven-development` スキルを利用してプランを実装すること
+実装計画に沿って実装を行う
 
+- 利用するスキル: `/superpowers:subagent-driven-development` 
+
+### 実装の方針
 - 追加の設計判断が必要になった場合はそのまま進めず、ユーザーに質問すること
 - 設計・計画の変更が必要になった場合は、ユーザーの確認をとって `spec` 、 `plan` を修正すること
+- その他の方針は `/superpowers:subagent-driven-development` に従うこと
 
 ## 5. 重要な設計判断をドキュメントに残す
 
