@@ -74,7 +74,8 @@ devcontainerのセットアップや、開発ツール・CLI、言語、AI用の
 
 ## アーキテクチャ (要点)
 
-`docs/architecture/overview.md` を参照
+アーキテクチャの正典は `docs/architecture/orverview.md` である。
+構成、ファイルの対応関係、設計に関わる作業を始める前に必ず読み、アーキテクチャの全体像を把握すること。
 
 ## テスト (要点)
 
@@ -114,7 +115,7 @@ docs/
   reference/
   background/
   adr/
-  reference/
+  releases/
 ```
 
 補足:
