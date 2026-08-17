@@ -85,7 +85,7 @@
       "extensions": [
         // Docs
         "hediet.vscode-drawio",
-        "yzhang.markdown-all-in-one",
+        "shd101wyy.markdown-preview-enhanced",
         "jebbs.plantuml",
 
         // Terraform
