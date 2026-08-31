@@ -1,6 +1,26 @@
+# Python
 .venv/
-tmp/
-core
+__pycache__/
+*.py[codz]
+*$py.class
+.Trash-*/
+.ipynb_checkpoints/
+.mypy_cache/
+.pytest_cache/
+
+# Node.js
+.pnpm-store/
+node_modules/
+.next/
+.turbo/
+*.tsbuildinfo
+playwright/.auth/
+test-results/
+playwright-report/
+
+# local env file
+.env
+!.env.sample
 
 # terraform
 terraform/.tfplan/
@@ -8,9 +28,9 @@ terraform/.tfstate/
 terraform/.terraform/
 **/backend.hcl
 
-# AI
+# others
+tmp/
 .claude/*.local.*
+agent-tasks/
 .serena/
 .playwright-mcp/
-.devcontainer/.env
-agent-tasks/

@@ -22,6 +22,7 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 WORKSPACE_FOLDER="$(cd "$SCRIPT_DIR/../.." && pwd)"
 
+cd $WORKSPACE_FOLDER
 CONTAINER_USER="vscode"
 while [ "$#" != 0 ]; do
   case "$1" in

@@ -93,7 +93,7 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 # Node.js インストール
 # https://nodesource.com/products/distributions
 RUN curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash - && \
-    sudo apt-get install -y nodejs && \
+    apt-get install -y nodejs && \
     node -v
 
 # corepack を有効化して pnpm を使えるようにする (マイナーまで固定、patch は最新を許容)

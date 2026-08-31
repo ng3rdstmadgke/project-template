@@ -14,8 +14,7 @@
       "mcp__chrome-devtools__*",
       "mcp__context7__*",
       "mcp__next-devtools__*",
-      "mcp__playwright__*",
-      "mcp__serena__*"
+      "mcp__playwright__*"
     ],
     "deny": [],
     "ask": [
@@ -41,8 +40,7 @@
     "next-devtools",
     "chrome-devtools",
     "playwright",
-    "context7",
-    "serena"
+    "context7"
   ],
   "statusLine": {
     "type": "command",

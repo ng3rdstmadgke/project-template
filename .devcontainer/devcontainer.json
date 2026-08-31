@@ -12,16 +12,11 @@
    // コンテナの環境変数設定
   "containerEnv": {
       "PROJECT_NAME": "project-template",
-      // devcontainerのID
-      "DEVCONTAINER_ID": "${devcontainerId}",
-      // ホスト側のプロジェクトディレクトリ
-      "HOST_DIR": "${localWorkspaceFolder}",
-      // コンテナ側のプロジェクトディレクトリ
-      "PROJECT_DIR": "${containerWorkspaceFolder}",
-      // ホスト側のユーザー名
-      "HOST_USER": "${localEnv:USER}",
-      // devcontainerが所属するネットワーク名
-      "DOCKER_NETWORK": "br-project-template-${localEnv:USER}"
+      "DEVCONTAINER_ID": "${devcontainerId}", // devcontainerのID
+      "HOST_DIR": "${localWorkspaceFolder}", // ホスト側のプロジェクトディレクトリ
+      "PROJECT_DIR": "${containerWorkspaceFolder}", // コンテナ側のプロジェクトディレクトリ
+      "HOST_USER": "${localEnv:USER}", // ホスト側のユーザー名
+      "DOCKER_NETWORK": "br-project-template-${localEnv:USER}" // devcontainerが所属するネットワーク名
   },
 
   "forwardPorts": [
@@ -102,16 +97,6 @@
 
         // Next.js
         "bradlc.vscode-tailwindcss",
-
-        // Copilot
-        "GitHub.copilot",
-        "GitHub.copilot-chat",
-
-        // Codex
-        "openai.chatgpt",
-
-        // Claude
-        "anthropic.claude-code",
 
         // Others
         "ms-vscode.makefile-tools",
