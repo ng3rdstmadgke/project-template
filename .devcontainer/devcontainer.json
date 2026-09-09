@@ -30,7 +30,7 @@
       "source=${localEnv:HOME}/.project-template/.config/helm/,target=/home/vscode/.config/helm/,type=bind,consistency=cached",
       "source=${localEnv:HOME}/.project-template/.claude/,target=/home/vscode/.claude/,type=bind,consistency=cached",
       "source=${localEnv:HOME}/.project-template/.claude.json,target=/home/vscode/.claude.json,type=bind,consistency=cached",
-      "source=${localEnv:HOME}/.baseport/.codex/,target=/home/vscode/.codex/,type=bind,consistency=cached"
+      "source=${localEnv:HOME}/.project-template/.codex/,target=/home/vscode/.codex/,type=bind,consistency=cached"
   ],
 
   // devcontainerに追加する機能の定義
