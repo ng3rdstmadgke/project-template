@@ -5,6 +5,7 @@ PATH="$PATH:$PROJECT_DIR/bin"
 source <(kubectl completion bash)
 source <(helm completion bash)
 source <(argocd completion bash)
+source <(codex completion bash)
 complete -C '/usr/local/bin/aws_completer' aws
 
 # Dockerfile の terraform -install-autocomplete で.bashrcに自動的に追記されるが、備忘として明示的に残しておく
