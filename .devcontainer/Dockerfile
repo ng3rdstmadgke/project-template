@@ -120,3 +120,8 @@ RUN export SHELL=/bin/bash && curl -fsSL https://get.pnpm.io/install.sh | sh -
 # DuckDB インストール
 # https://duckdb.org/install/?platform=macos&environment=cli
 RUN curl https://install.duckdb.org | sh
+
+
+# Codex
+# https://learn.chatgpt.com/docs/codex/cli#getting-started
+RUN curl -fsSL https://chatgpt.com/codex/install.sh | sh

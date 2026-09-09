@@ -1,0 +1,21 @@
+prefix_rule(
+    pattern = ["git", ["remote", "push"]],
+    decision = "prompt",
+)
+
+prefix_rule(
+  pattern = ["terraform", ["apply", "destroy"]],
+  decision = "prompt",
+)
+
+prefix_rule(
+    pattern = ["kubectl", ["apply", "delete", "create", "edit"]],
+    decision = "prompt",
+)
+
+prefix_rule(
+    pattern = [[
+        "node", "npm", "tsx", "python3", "python", "curl", "wget",
+    ]],
+    decision = "prompt",
+)

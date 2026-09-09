@@ -1,0 +1,54 @@
+# CodexがPC上で操作できる範囲を制限する安全設定
+sandbox_mode = "workspace-write"  # 作業フォルダ内は編集可能
+
+# Codexがコマンド実行時にユーザーの承認を求める条件
+approval_policy = "on-request"  # sandbox内では自動実行し、sandboxの制限を越える必要がある場合に承認を求める
+
+# 承認リクエストを誰が審査するか
+approvals_reviewer = "auto_review"  # 専用のレビューエージェントが評価
+
+# Web検索設定
+web_search = "live"  # 最新のWeb情報を検索
+
+[sandbox_workspace_write]
+network_access = true  # 外向き通信を許可
+
+# === === === MCP === === ===
+
+[mcp_servers.next-devtools]
+command = "npx"
+args = ["-y", "next-devtools-mcp@latest"]
+default_tools_approval_mode = "approve"
+
+[mcp_servers.chrome-devtools]
+command = "npx"
+args = [
+  "-y",
+  "chrome-devtools-mcp@latest",
+  "--headless=true",
+  "--chromeArg=--no-sandbox",
+  "--chromeArg=--disable-gpu",
+  "--chromeArg=--disable-dev-shm-usage"
+]
+default_tools_approval_mode = "approve"
+
+[mcp_servers.playwright]
+command = "npx"
+args = [
+  "-y",
+  "@playwright/mcp@latest",
+  "--browser=chrome",
+  "--headless",
+  "--isolated",
+  "--no-sandbox"
+]
+default_tools_approval_mode = "approve"
+
+[mcp_servers.context7]
+command = "sh"
+args = [
+  "-lc",
+  'exec npx -y @upstash/context7-mcp --api-key "$CONTEXT7_API_KEY"'
+]
+env_vars = ["CONTEXT7_API_KEY"]
+default_tools_approval_mode = "approve"
