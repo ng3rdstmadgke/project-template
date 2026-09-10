@@ -3,6 +3,7 @@
     "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   },
   "permissions": {
+    "defaultMode": "acceptEdits"
     "allow": [
       "Edit",
       "NotebookEdit",
@@ -24,15 +25,8 @@
       "Bash(Kubectl delete:*)",
       "Bash(kubectl create:*)",
       "Bash(kubectl edit:*)",
-      "Bash(terraform:*)",
-      "Bash(make:*)",
-      "Bash(node:*)",
-      "Bash(npm:*)",
-      "Bash(tsx:*)",
-      "Bash(python3:*)",
-      "Bash(python:*)",
-      "Bash(curl:*)",
-      "Bash(wget:*)"
+      "Bash(terraform apply:*)",
+      "Bash(make:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
