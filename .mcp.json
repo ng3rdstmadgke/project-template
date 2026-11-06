@@ -9,31 +9,6 @@
       ],
       "env": {}
     },
-    "chrome-devtools": {
-      "type": "stdio",
-      "command": "npx",
-      "args": [
-        "-y",
-        "chrome-devtools-mcp@latest",
-        "--headless=true",
-        "--chromeArg=--no-sandbox",
-        "--chromeArg=--disable-gpu",
-        "--chromeArg=--disable-dev-shm-usage"
-      ],
-      "env": {}
-    },
-    "playwright": {
-      "type": "stdio",
-      "command": "npx",
-      "args": [
-        "@playwright/mcp@latest",
-        "--browser=chrome",
-        "--headless",
-        "--isolated",
-        "--no-sandbox"
-      ],
-      "env": {}
-    },
     "context7": {
       "type": "stdio",
       "command": "npx",

@@ -100,11 +100,13 @@ RUN curl -fsSL https://deb.nodesource.com/setup_24.x | sudo -E bash - && \
 # https://github.com/nodejs/corepack
 RUN corepack enable && corepack prepare pnpm --activate
 
-# Google Chrome のインストール
-RUN wget -q  https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
-    apt install -y ./google-chrome-stable_current_amd64.deb
+# Playwright CLI: https://playwright.dev/agent-cli/installation
+RUN npm install -g @playwright/cli@latest
 
 USER vscode
+
+# Playwright 用の Chromium のインストール
+RUN playwright-cli install-browser chromium --with-deps
 
 # Claude Code CLI インストール
 # https://code.claude.com/docs/en/setup#standard-installation
