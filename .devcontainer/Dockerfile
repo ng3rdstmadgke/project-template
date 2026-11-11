@@ -5,30 +5,32 @@ RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
     --mount=type=cache,target=/var/lib/apt/lists,sharing=locked \
     apt update && \
     apt install -y \
-      sudo \
-      locales \
-      net-tools \
-      iputils-ping \
-      dnsutils \
       bash-completion \
-      less \
       curl \
-      wget \
-      tar \
-      xz-utils \
-      unzip \
-      make \
+      default-mysql-client \
+      dnsutils \
+      fzf \
       gcc \
       git \
-      vim \
-      tmux \
-      jq \
-      fzf \
       groff \
+      iputils-ping \
+      jq \
+      less \
+      locales \
+      make \
+      netcat-openbsd \
+      net-tools \
       procps \
       python3.12 \
-      default-mysql-client \
-      redis-tools
+      redis-tools \
+      sudo \
+      tar \
+      tmux \
+      unzip \
+      vim \
+      wget \
+      xz-utils \
+      yq
 
 # ロケール設定
 RUN echo 'ja_JP.UTF-8 UTF-8' >> /etc/locale.gen && \
